@@ -3,17 +3,13 @@
   vars:
     war_file: jpetstore.war
   tasks:
-#    - name: create unzip dir
-#      file:
-#        path: /tmp/jpetstore
-#        state: directory
 
-    - name: copy WAR
+    - name: copy WAR  
       copy:
-        src: "/tmp/{{war_file}}"
+        src: "{{war_file}}"
         dest: "/usr/share/tomcat/webapps/{{war_file}}"
 
-    - name: copy initdb file
+    - name: copy initdb files
       copy:
         src: "../jpetstore/db/mysql5/{{item}}"
         dest: "{{item}}" 
@@ -31,17 +27,7 @@
       copy:
         src: "../jpetstore/lib/mysql-connector-java-3.0.17-ga-bin.jar"
         dest: "/usr/share/tomcat/webapps/jpetstore/WEB-INF/lib/"
-#    - name: unzip WAR
-#      unarchive:
-#        src: "/tmp/{{war_file}}"
-#        remote_src: no
-#        dest: "/usr/share/tomcat/webapps/{{war_file}}"
+#
 #    - name: configure DB connexion
 #      debug:
-#        msg: "configure DB connexion" 
-#    - name: zip WAR
-#      archive:
-#       path: /tmp/jpetstore
-#        dest: "/usr/share/tomcat/webapps/{{war_file}}"
-#        format: zip
-#        remove: yes
+#        msg: "configure DB connexion NON IMPLEMENTE" 
