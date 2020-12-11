@@ -1,4 +1,8 @@
 # from any Git-based repository, using SSH
 - src: https://github.com/jmlafont/ansible.mysql.install.git
   scm: git
-  name: mysql
+  name: mysql-install
+# from any Git-based repository, using SSH
+- src: https://github.com/jmlafont/ansible.tomcat.git
+  scm: git
+  name: tomcat-install

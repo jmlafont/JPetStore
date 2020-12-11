@@ -2,6 +2,14 @@
   hosts: web_servers
   vars:
     war_file: jpetstore.war
+    http_port: 8086
+    https_port: 8444
+    admin_username: demo
+    admin_password: demo
+  roles:
+    - mysql-install
+    - tomcat-install
+
   tasks:
 
     - name: copy WAR  
