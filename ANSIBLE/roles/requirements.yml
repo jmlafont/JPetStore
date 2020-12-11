@@ -1,0 +1,4 @@
+# from any Git-based repository, using SSH
+- src: https://github.com/jmlafont/ansible.mysql.install.git
+  scm: git
+  name: mysql
