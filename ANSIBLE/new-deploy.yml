@@ -1,5 +1,0 @@
----
-- name: test
-  hosts: web_servers
-  roles:
-    - mysql
