@@ -1,5 +1,7 @@
 # Modernize and Extend: JPetStore on IBM Cloud Kubernetes Service
 
+from : [https://github.com/IBM-Cloud/jpetstore-kubernetes](https://github.com/IBM-Cloud/jpetstore-kubernetes)
+
 This demo modernizes an existing Java web application (JPetStore) by:
 
 1. building Docker containers from the legacy stack
