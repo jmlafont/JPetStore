@@ -1,11 +1,17 @@
 - name: deploy JPET war
   hosts: web_servers
+
   vars:
     war_file: jpetstore.war
-    http_port: 8086
-    https_port: 8444
+    http_port: 8080
+    https_port: 8443
     admin_username: demo
     admin_password: demo
+
+    database_name: jpetstore
+    database_user: jpetstore
+    database_passwd: jppwd
+
   roles:
     - mysql-install
     - tomcat-install
@@ -16,8 +22,39 @@
       copy:
         src: "{{war_file}}"
         dest: "/usr/share/tomcat/webapps/{{war_file}}"
+        owner: tomcat
+        group: tomcat
 
-    - name: copy initdb files
+    - name: Wait until the file /usr/share/tomcat/webapps/jpetstore/WEB-INF/lib/ is present before continuing
+      wait_for:
+        path: /usr/share/tomcat/webapps/jpetstore/WEB-INF/lib/
+
+    - name: copy jdbc lib
+      copy:
+        src: "../jpetstore/lib/mysql-connector-java-3.0.17-ga-bin.jar"
+        dest: "/usr/share/tomcat/webapps/jpetstore/WEB-INF/lib/"
+        owner: tomcat
+        group: tomcat
+
+    - name: configure db connexion (server)
+      lineinfile:
+        path: /usr/share/tomcat/webapps/jpetstore/WEB-INF/jdbc.properties
+        regexp: 'jdbc.url=jdbc:mysql://db:3306/jpetstore'
+        line: "jdbc.url=jdbc:mysql://localhost:3306/{{database_name}}"
+
+    - name: configure db connexion (password)
+      lineinfile:
+        path: /usr/share/tomcat/webapps/jpetstore/WEB-INF/jdbc.properties
+        regexp: '^jdbc.password='
+        line: 'jdbc.password={{database_passwd}}'
+
+    - name: configure db connexion (username)
+      lineinfile:
+        path: /usr/share/tomcat/webapps/jpetstore/WEB-INF/jdbc.properties
+        regexp: '^jdbc.username='
+        line: 'jdbc.username={{database_user}}'
+
+    - name: copy initdb files 
       copy:
         src: "../jpetstore/db/mysql5/{{item}}"
         dest: "{{item}}" 
@@ -26,15 +63,11 @@
         - jpetstore-mysql-2-dataload.sql
 
     - name: init db
-      shell: mysql -u jpetstore -pjppwd jpetstore <  jpetstore-mysql-1-schema.sql
+      shell: mysql -u jpetstore -pjppwd jpetstore <  {{item}}
+      loop:
+        - jpetstore-mysql-1-schema.sql
+        - jpetstore-mysql-2-dataload.sql
 
-    - name: init db data
-      shell: mysql -u jpetstore -pjppwd jpetstore <  jpetstore-mysql-2-dataload.sql
-
-    - name: copy jdbc lib
-      copy:
-        src: "../jpetstore/lib/mysql-connector-java-3.0.17-ga-bin.jar"
-        dest: "/usr/share/tomcat/webapps/jpetstore/WEB-INF/lib/"
 #
 #    - name: configure DB connexion
 #      debug:
