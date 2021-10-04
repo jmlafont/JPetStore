@@ -8,7 +8,7 @@ Everything needed is in the current repository
 
 - Source files are in the [../jpetstore](../jpetstore) subdirectory 
 - yaml files to deploy the application are in [../YAML](../YAML) subdirectory
-- pipeline definition is in [Pipeline.yaml](Pipeline.yaml) file in  [../Tekton](../Tekton) subdirectory
+- pipeline definition is in [Pipeline.yaml](Pipeline.yaml) file in  [../TEKTON](../TEKTON) subdirectory
 
 ## Pre-requisites:
 
@@ -28,7 +28,7 @@ Everything needed is in the current repository
 clone the git repository on your linux session
 
 ```
-git clone https://github.com/jmlafont/jpetstore-kubernetes.git
+git clone https://github.com/jmlafont/jpetstore.git
 ```
 
 go into Tekton directory
