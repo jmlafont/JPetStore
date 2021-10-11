@@ -28,6 +28,8 @@ spec:
             port: 9080
           initialDelaySeconds: 10
           periodSeconds: 5
+      nodeSelector:
+        app: jpetstore
 ---
 kind: Service
 apiVersion: v1
@@ -70,6 +72,8 @@ spec:
             value: "jpetstore"
           - name: MYSQL_PASSWORD
             value: "foobar"
+      nodeSelector:
+        app: jpetstore
 ---
 kind: Service
 apiVersion: v1
