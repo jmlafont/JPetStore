@@ -1,3 +1,3 @@
-- dans jpetstore.yaml : remplacer DBIMAGE et WEBIMAGE par les images docker à utiliser (par exemple quay.io/jmlafont/jpetstore-db et quay.io/jmlafont/jpetstore-web )
+- dans jpetstore.yaml : remplacer éventuellement les images docker à utiliser 
 - oc apply -f jpetstore.yaml
-- vérifier en utilisant la route créée par le fichier yaml
+- vérifier l'appli en y accédant par la route créée par le fichier yaml
