@@ -19,7 +19,7 @@ cd jpetstore/jpetstore ; ./build.sh all
 ```
 yum install java-1.8.0-openjdk
 ```
-set JAVA_HOME (from .bash_profile)
+- set JAVA_HOME (from .bash_profile)
 - install docker
 ```
 sudo yum remove docker \
