@@ -1,5 +1,5 @@
 - dans jpetstore.yaml : remplacer éventuellement les images docker à utiliser 
 - oc apply -f jpetstore.yaml
 - vérifier l'appli en y accédant par la route créée par le fichier yaml
-namespace et rolebinding sont utiliser pour GitOps
+(namespace et rolebinding sont utiliser pour GitOps)
 
