@@ -29,8 +29,8 @@ spec:
             port: 9080
           initialDelaySeconds: 10
           periodSeconds: 5
-#      nodeSelector:
-#        app: jpetstore
+      nodeSelector:
+        app: jpetstore
 ---
 kind: Service
 apiVersion: v1
