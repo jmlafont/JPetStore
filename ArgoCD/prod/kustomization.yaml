@@ -1,3 +1,3 @@
 nameSuffix: -prod
 resources:
-- ../
+- ../route.yml
