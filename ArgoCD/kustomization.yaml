@@ -3,3 +3,4 @@ resources:
 - deployment-db.yml
 - service-web.yml
 - service-db.yml
+- route.yml
