@@ -4,5 +4,5 @@ resources:
 patches:
 - path: route.yml
   target:
-    kind: route
+    kind: Route
 
