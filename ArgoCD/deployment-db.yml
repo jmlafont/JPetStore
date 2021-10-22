@@ -1,0 +1,33 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: jpetstoredb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jpetstoredb
+  template:
+    metadata:
+      labels:
+        app: jpetstoredb
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: jpetstoredb
+        image: quay.io/jmlafont/jpetstoredb
+        ports:
+        - containerPort: 3306
+        env:
+          - name: MYSQL_ROOT_PASSWORD
+            value: "foobar"
+          - name: MYSQL_DATABASE
+            value: "jpetstore"
+          - name: MYSQL_USER
+            value: "jpetstore"
+          - name: MYSQL_PASSWORD
+            value: "foobar"
+#      nodeSelector:
+#        app: jpetstore
