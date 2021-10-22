@@ -1,3 +1,4 @@
+
 nameSuffix: -prod
 resources:
 - ../base/
