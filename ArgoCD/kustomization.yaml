@@ -1,2 +1,3 @@
 resources:
+- ../YAML
 - ../YAML/deployment-web.yml
