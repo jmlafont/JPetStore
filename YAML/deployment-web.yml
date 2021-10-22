@@ -1,0 +1,33 @@
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: jpetstoreweb
+spec:
+  replicas: 1
+  selector:
+      matchLabels:
+        app: jpetstoreweb
+  template:
+    metadata:
+      labels:
+        app: jpetstoreweb
+      annotations:
+        sidecar.istio.io/inject: "true"
+    spec:
+      containers:
+      - name: jpetstoreweb
+        image: quay.io/jmlafont/jpetstoreweb:1.0
+        env:
+          - name: VERSION
+            value: "1"
+        ports:
+        - containerPort: 9080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 9080
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+
