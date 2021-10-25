@@ -1,0 +1,6 @@
+resources:
+- deployment-web.yml
+- deployment-db.yml
+- service-web.yml
+- service-db.yml
+- route.yml
