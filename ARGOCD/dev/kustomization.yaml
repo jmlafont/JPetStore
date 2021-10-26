@@ -1,0 +1,9 @@
+
+nameSuffix: -dev
+resources:
+- ../base/
+patches:
+- path: route.yml
+  target:
+    kind: Route
+
